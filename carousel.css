@@ -14,7 +14,9 @@ html, body {
 
 .carousel-container {
   height: 100%;
-  margin: 5%;
+  margin: 5% 0;
+  transition: transform 0.3s;
+  transform: translate3d(0, 0, 0);
 }
 
 .carousel-container::after{
@@ -39,4 +41,28 @@ img{
 figure figcaption {
   padding: 5px;
   background-color: #F4F4F4;
+}
+
+.carousel-next, .carousel-prev{
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: #FFF url('./arrow-right.svg') center center no-repeat;
+  background-size: 20px 20px;
+  border-radius: 50%;
+  top: 50%;
+  right: 0;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.carousel-next{
+  right: auto;
+  left: 0;
+  background-image: url('./arrow-left.svg');
+}
+
+.carousel-next:hover, .carousel-prev:hover{
+  transform: scale(1.2);
 }
