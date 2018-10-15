@@ -21,25 +21,29 @@ class Carousel{
     /* Ajoute la class div.carousel */
     let divRoot = this.createDivNClass('carousel');
     this.divContainer = this.createDivNClass('carousel-container');
-    divRoot.appendChild(divContainer);
+    divRoot.appendChild(this.divContainer);
     this.element.appendChild(divRoot);
 
     
 
     /* Mettre les slides "enfants" dans le divContainer */
-    this.items = children.Map((elementChild) => {
+    this.items = children.map((elementChild) => {
       let item = this.createDivNClass('carousel-item');
-      item.style.width = ((100 / this.options.slidesVisible) / ratio) + "%";
       item.appendChild(elementChild);
       this.divContainer.appendChild(item);
 
       return item;
     });
+
+    this.setStyle();
   }
 
   setStyle(){
-    let ratio = this.children.length / this.options.slidesVisible;
+    let ratio = this.items.length / this.options.slidesVisible;
     this.divContainer.style.width = (ratio * 100) + '%';
+    this.items.forEach(item => {
+      item.style.width = ((100 / this.options.slidesVisible) / ratio) + "%";
+    });
   }
 
   createDivNClass(className){
